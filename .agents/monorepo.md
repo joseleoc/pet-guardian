@@ -39,6 +39,13 @@ Use this guidance for repository-wide architecture and workflow decisions beyond
 - Reuse common configuration in shared files rather than duplicating per app.
 - Automate repetitive developer tasks through scripts in `tools/` or package scripts.
 
+## Lint standardization
+
+- Use a shared root ESLint base config for global defaults and common ignores.
+- Extend the shared base in each app ESLint config.
+- Keep app-level lint differences as minimal overrides only when framework/runtime requirements differ.
+- Run lint globally from root (`pnpm lint`) and auto-fix globally when needed (`pnpm lint:fix`).
+
 ## Scalability and onboarding
 
 - Monitor repository and CI performance as the number of packages grows.
