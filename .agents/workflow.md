@@ -1,0 +1,20 @@
+# Shared Workflow Guidance
+
+Use this as reusable guidance from package-level `AGENTS.md` files.
+
+## Monorepo commands
+
+- Install dependencies (root): `pnpm install`
+- Build pipeline (root): `pnpm build`
+- Dev pipeline (root): `pnpm dev`
+
+## Package-scoped commands
+
+- Backend: `pnpm --filter backend <script>`
+- Mobile: `pnpm --filter mobile <script>`
+
+## Change strategy
+
+- Keep edits minimal and package-scoped.
+- Prefer existing libraries and patterns already present in the touched package.
+- Update docs when behavior or developer workflow changes.
