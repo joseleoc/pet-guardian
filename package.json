@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "turbo run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "workspaces": [
     "apps/*"
   ],
+  "packageManager": "pnpm@10.32.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lagoonStudios/pet-guardian-mvp.git"
@@ -20,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/lagoonStudios/pet-guardian-mvp/issues"
   },
-  "homepage": "https://github.com/lagoonStudios/pet-guardian-mvp#readme"
+  "homepage": "https://github.com/lagoonStudios/pet-guardian-mvp#readme",
+  "devDependencies": {
+    "turbo": "^2.8.17"
+  }
 }
