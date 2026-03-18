@@ -10,7 +10,7 @@
     "lint:fix": "turbo run lint:fix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "supabase:link": "npx supabase link --project-ref \"$PROJECT_REF\"",
-    "supabase:gen": "npx supabase gen types typescript --project-id \"$PROJECT_REF\" --schema public > database.types.ts",
+    "supabase:gen": "npx supabase gen types typescript --project-id \"$PROJECT_REF\" --schema public > supabase/database.types.ts",
     "supabase:migrate": "npx supabase db push"
   },
   "workspaces": [
