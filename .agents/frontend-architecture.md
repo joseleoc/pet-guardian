@@ -49,6 +49,14 @@ Guidelines:
 - Form schemas must live in `ComponentName/ComponentName.schema.ts`.
 - Keep schema definitions and validation rules in the schema file, then import them into the component/form implementation.
 
+## Server state implementation standard
+
+- Use TanStack Query (`@tanstack/react-query` v5+) for frontend server state.
+- Centralize query keys in a query key factory and avoid inline key literals.
+- Keep fetchers separate from query hooks.
+- Wrap every `useQuery` and `useMutation` in feature-level custom hooks.
+- Follow the detailed guidance in `@.agents/frontend-tanstack-query.md`.
+
 ## Catalog maintenance rule
 
 - The component resources catalog (`@.agents/frontend-components-catalog.md`) must be updated whenever a frontend component is created, updated in classification, renamed, or deleted.
