@@ -1,8 +1,11 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
+import { PaperProvider } from "react-native-paper";
 import 'react-native-reanimated';
 
+import { createPaperTheme } from "@/constants/paper-theme";
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export const unstable_settings = {
@@ -11,14 +14,24 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const isDark = colorScheme === "dark";
+
+  const navigationTheme = isDark ? DarkTheme : DefaultTheme;
+  const paperTheme = createPaperTheme(isDark, navigationTheme);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <PaperProvider
+      theme={paperTheme}
+      settings={{
+        icon: (props) => <MaterialDesignIcons {...props} name={props.name as string} />,
+      }}>
+      <ThemeProvider value={navigationTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: "modal", title: "Modal" }} />
+        </Stack>
+        <StatusBar style={isDark ? "light" : "dark"} />
+      </ThemeProvider>
+    </PaperProvider>
   );
 }
