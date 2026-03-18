@@ -33,6 +33,7 @@ Optional files (create only when needed):
 - `ComponentName/ComponentName.types.ts`: all component-specific TypeScript types.
 - `ComponentName/ComponentName.functions.ts` or `ComponentName/ComponentName.functions.tsx`: reusable component logic that can be separated from the React component.
 - `ComponentName/ComponentName.constants.ts`: component-specific constants.
+- `ComponentName/ComponentName.styles.tsx`: component-specific styles.
 - `ComponentName/ComponentName.tests.tsx`: component unit tests.
 
 Guidelines:
