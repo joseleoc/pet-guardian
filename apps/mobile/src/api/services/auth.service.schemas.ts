@@ -1,11 +1,11 @@
-import { z } from 'zod';
+import * as yup from "yup";
 
-export const signInDtoSchema = z.object({
-  email: z.email(),
-  password: z.string().min(8),
+export const signInDtoSchema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).required(),
 });
 
-export const signUpDtoSchema = z.object({
-  email: z.email(),
-  password: z.string().min(8),
+export const signUpDtoSchema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).required(),
 });

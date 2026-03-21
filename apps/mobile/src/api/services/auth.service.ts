@@ -1,4 +1,5 @@
 import type { AuthError } from "@supabase/supabase-js";
+import { ValidationError } from "yup";
 
 import { supabase } from "@/lib/supabase";
 import { signInDtoSchema, signUpDtoSchema } from "./auth.service.schemas";
@@ -64,15 +65,22 @@ function invalidInput(message: string): ServiceResult<never> {
 export async function signInWithEmail(
   payload: SignInWithEmailDto,
 ): Promise<ServiceResult<AuthSessionPayload>> {
-  const parsedPayload = signInDtoSchema.safeParse(payload);
+  let parsedPayload: SignInWithEmailDto;
 
-  if (!parsedPayload.success) {
-    return invalidInput(
-      parsedPayload.error.issues.map((issue: { message: string }) => issue.message).join("; "),
-    );
+  try {
+    parsedPayload = await signInDtoSchema.validate(payload, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return invalidInput(error.errors.join("; "));
+    }
+
+    return invalidInput("Invalid request payload.");
   }
 
-  const { data, error } = await supabase.auth.signInWithPassword(parsedPayload.data);
+  const { data, error } = await supabase.auth.signInWithPassword(parsedPayload);
 
   if (error) {
     return {
@@ -91,15 +99,22 @@ export async function signInWithEmail(
 }
 
 export async function signUp(payload: SignUpDto): Promise<ServiceResult<AuthSessionPayload>> {
-  const parsedPayload = signUpDtoSchema.safeParse(payload);
+  let parsedPayload: SignUpDto;
 
-  if (!parsedPayload.success) {
-    return invalidInput(
-      parsedPayload.error.issues.map((issue: { message: string }) => issue.message).join("; "),
-    );
+  try {
+    parsedPayload = await signUpDtoSchema.validate(payload, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return invalidInput(error.errors.join("; "));
+    }
+
+    return invalidInput("Invalid request payload.");
   }
 
-  const { data, error } = await supabase.auth.signUp(parsedPayload.data);
+  const { data, error } = await supabase.auth.signUp(parsedPayload);
 
   if (error) {
     return {
