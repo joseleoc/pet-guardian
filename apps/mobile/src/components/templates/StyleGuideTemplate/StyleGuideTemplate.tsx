@@ -1,114 +1,82 @@
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { useTheme } from 'react-native-paper';
-import { useTranslation } from 'react-i18next';
+import { useTheme } from "react-native-paper";
 
 import { Button, Card, Input, SafeAreaView, Text, Textarea, View } from "@/src/components/atoms";
 import { styles } from './StyleGuideTemplate.styles';
 
 export function StyleGuideTemplate() {
   const theme = useTheme();
-  const { t, i18n } = useTranslation(['common']);
   const [petName, setPetName] = useState('Milo');
   const [notes, setNotes] = useState('');
 
   useEffect(() => {
-    setNotes(t('screens.styleGuide.sections.textarea.sampleValue'));
-  }, [i18n.resolvedLanguage, t]);
+    setNotes("Sample notes for care.");
+  }, []);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text type="title">{t('screens.styleGuide.title')}</Text>
+        <Text type="title">Style Guide</Text>
         <Text>
-          {t('screens.styleGuide.description')}
+          Atom showcase built with React Native Paper. Use this screen to validate light and dark
+          theme behavior while the design system evolves.
         </Text>
 
-        <Card
-          title={t('screens.styleGuide.sections.text.title')}
-          subtitle={t('screens.styleGuide.sections.text.subtitle')}>
+        <Card title="Text" subtitle="Typography variants">
           <View style={styles.section}>
-            <Text type="title">{t('screens.styleGuide.sections.text.titleText')}</Text>
-            <Text type="subtitle">{t('screens.styleGuide.sections.text.subtitleText')}</Text>
-            <Text>{t('screens.styleGuide.sections.text.bodyText')}</Text>
-            <Text type="defaultSemiBold">{t('screens.styleGuide.sections.text.helperText')}</Text>
-            <Text type="link">{t('screens.styleGuide.sections.text.linkText')}</Text>
+            <Text type="title">Title text</Text>
+            <Text type="subtitle">Subtitle text</Text>
+            <Text>Default body text for longer content blocks.</Text>
+            <Text type="defaultSemiBold">Semi-bold helper text</Text>
+            <Text type="link">Link-styled text</Text>
           </View>
         </Card>
 
-        <Card
-          title={t('screens.styleGuide.sections.buttons.title')}
-          subtitle={t('screens.styleGuide.sections.buttons.subtitle')}>
+        <Card title="Buttons" subtitle="Available action variants">
           <View style={styles.section}>
-            <Button mode="contained">{t('screens.styleGuide.sections.buttons.contained')}</Button>
-            <Button mode="elevated">{t('screens.styleGuide.sections.buttons.elevated')}</Button>
-            <Button mode="contained-tonal">{t('screens.styleGuide.sections.buttons.containedTonal')}</Button>
-            <Button mode="outlined">{t('screens.styleGuide.sections.buttons.outlined')}</Button>
-            <Button mode="text">{t('screens.styleGuide.sections.buttons.text')}</Button>
+            <Button mode="contained">Contained</Button>
+            <Button mode="elevated">Elevated</Button>
+            <Button mode="contained-tonal">Contained tonal</Button>
+            <Button mode="outlined">Outlined</Button>
+            <Button mode="text">Text</Button>
           </View>
         </Card>
 
-        <Card
-          title={t('screens.styleGuide.sections.inputs.title')}
-          subtitle={t('screens.styleGuide.sections.inputs.subtitle')}>
+        <Card title="Inputs" subtitle="Single-line field states">
           <View style={styles.section}>
-            <Input
-              label={t('screens.styleGuide.sections.inputs.petNameLabel')}
-              value={petName}
-              onChangeText={setPetName}
-            />
-            <Input
-              mode="flat"
-              label={t('screens.styleGuide.sections.inputs.flatLabel')}
-              placeholder={t('screens.styleGuide.sections.inputs.flatPlaceholder')}
-            />
-            <Input
-              label={t('screens.styleGuide.sections.inputs.errorLabel')}
-              value={t('screens.styleGuide.sections.inputs.errorValue')}
-              error
-            />
-            <Input
-              label={t('screens.styleGuide.sections.inputs.disabledLabel')}
-              value={t('screens.styleGuide.sections.inputs.disabledValue')}
-              disabled
-            />
+            <Input label="Pet name" value={petName} onChangeText={setPetName} />
+            <Input mode="flat" label="Flat input" placeholder="Flat variant" />
+            <Input label="Error state" value="Missing vaccine date" error />
+            <Input label="Disabled input" value="Read only" disabled />
           </View>
         </Card>
 
-        <Card
-          title={t('screens.styleGuide.sections.textarea.title')}
-          subtitle={t('screens.styleGuide.sections.textarea.subtitle')}>
+        <Card title="Textarea" subtitle="Multi-line field variants">
           <View style={styles.section}>
-            <Textarea
-              label={t('screens.styleGuide.sections.textarea.careNotesLabel')}
-              value={notes}
-              onChangeText={setNotes}
-              numberOfLines={5}
-            />
+            <Textarea label="Care notes" value={notes} onChangeText={setNotes} numberOfLines={5} />
             <Textarea
               mode="flat"
-              label={t('screens.styleGuide.sections.textarea.flatLabel')}
-              placeholder={t('screens.styleGuide.sections.textarea.flatPlaceholder')}
+              label="Flat textarea"
+              placeholder="Add additional observations"
               numberOfLines={4}
             />
           </View>
         </Card>
 
-        <Card
-          title={t('screens.styleGuide.sections.cards.title')}
-          subtitle={t('screens.styleGuide.sections.cards.subtitle')}>
+        <Card title="Cards" subtitle="Surface and emphasis variants">
           <View style={styles.section}>
-            <Card mode="contained" title={t('screens.styleGuide.sections.cards.containedTitle')}>
-              <Text>{t('screens.styleGuide.sections.cards.containedBody')}</Text>
+            <Card mode="contained" title="Contained card">
+              <Text>Low-emphasis content section.</Text>
             </Card>
-            <Card mode="outlined" title={t('screens.styleGuide.sections.cards.outlinedTitle')}>
-              <Text>{t('screens.styleGuide.sections.cards.outlinedBody')}</Text>
+            <Card mode="outlined" title="Outlined card">
+              <Text>Clear boundary for grouped information.</Text>
             </Card>
             <Card
               mode="elevated"
-              title={t('screens.styleGuide.sections.cards.elevatedTitle')}
-              subtitle={t('screens.styleGuide.sections.cards.elevatedSubtitle')}
+              title="Elevated card"
+              subtitle="Default emphasis"
               left={() => (
                 <MaterialDesignIcons
                   name="paw"
@@ -117,30 +85,28 @@ export function StyleGuideTemplate() {
                   style={styles.cardIcon}
                 />
               )}>
-              <Text>{t('screens.styleGuide.sections.cards.elevatedBody')}</Text>
+              <Text>Useful for featured content or summaries.</Text>
             </Card>
           </View>
         </Card>
 
-        <Card
-          title={t('screens.styleGuide.sections.view.title')}
-          subtitle={t('screens.styleGuide.sections.view.subtitle')}>
+        <Card title="View" subtitle="Base surface atom">
           <View style={styles.section}>
             <View style={[styles.surfaceSample, { backgroundColor: theme.colors.surfaceVariant }]}>
-              <Text type="defaultSemiBold">{t('screens.styleGuide.sections.view.sampleTitle')}</Text>
-              <Text>{t('screens.styleGuide.sections.view.sampleBody')}</Text>
+              <Text type="defaultSemiBold">Surface sample</Text>
+              <Text>Use View for themed content blocks and layouts.</Text>
             </View>
           </View>
         </Card>
 
-        <Card
-          title={t('screens.styleGuide.sections.safeAreaView.title')}
-          subtitle={t('screens.styleGuide.sections.safeAreaView.subtitle')}>
+        <Card title="SafeAreaView" subtitle="Inset-aware layout wrapper">
           <View style={styles.section}>
-            <Text>{t('screens.styleGuide.sections.safeAreaView.body')}</Text>
+            <Text>
+              This screen itself is wrapped in the SafeAreaView atom, so top insets are already
+              applied through the shared atom API.
+            </Text>
           </View>
         </Card>
-
       </ScrollView>
     </SafeAreaView>
   );
