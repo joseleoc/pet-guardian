@@ -1,48 +1,52 @@
-import type { AuthError } from '@supabase/supabase-js';
+import type { AuthError } from "@supabase/supabase-js";
 
-import { supabase } from '@/lib/supabase';
-import { signInDtoSchema, signUpDtoSchema } from './auth.service.schemas';
+import { supabase } from "@/lib/supabase";
+import { signInDtoSchema, signUpDtoSchema } from "./auth.service.schemas";
 import type {
   AuthSessionPayload,
   ServiceError,
   ServiceResult,
   SignInWithEmailDto,
   SignUpDto,
-} from './auth.service.types';
+} from "./auth.service.types";
 
 function mapAuthError(error: AuthError): ServiceError {
   const normalizedMessage = error.message.toLowerCase();
 
-  if (error.status === 400 && normalizedMessage.includes('invalid login credentials')) {
+  if (error.status === 400 && normalizedMessage.includes("invalid login credentials")) {
     return {
-      code: 'INVALID_CREDENTIALS',
-      message: 'Enterprise credentials are invalid.',
+      code: "INVALID_CREDENTIALS",
+      message: "Enterprise credentials are invalid.",
     };
   }
 
-  if (error.status === 422 && normalizedMessage.includes('already registered')) {
+  if (error.status === 422 && normalizedMessage.includes("already registered")) {
     return {
-      code: 'EMAIL_ALREADY_REGISTERED',
-      message: 'Enterprise identity already exists.',
+      code: "EMAIL_ALREADY_REGISTERED",
+      message: "Enterprise identity already exists.",
     };
   }
 
-  if (error.status === 401 || normalizedMessage.includes('jwt') || normalizedMessage.includes('unauthorized')) {
+  if (
+    error.status === 401 ||
+    normalizedMessage.includes("jwt") ||
+    normalizedMessage.includes("unauthorized")
+  ) {
     return {
-      code: 'UNAUTHORIZED',
-      message: 'Enterprise access is not authorized.',
+      code: "UNAUTHORIZED",
+      message: "Enterprise access is not authorized.",
     };
   }
 
-  if (normalizedMessage.includes('network') || normalizedMessage.includes('fetch')) {
+  if (normalizedMessage.includes("network") || normalizedMessage.includes("fetch")) {
     return {
-      code: 'NETWORK_ERROR',
-      message: 'Network error while contacting authentication service.',
+      code: "NETWORK_ERROR",
+      message: "Network error while contacting authentication service.",
     };
   }
 
   return {
-    code: 'UNKNOWN_AUTH_ERROR',
+    code: "UNKNOWN_AUTH_ERROR",
     message: error.message,
   };
 }
@@ -51,7 +55,7 @@ function invalidInput(message: string): ServiceResult<never> {
   return {
     data: null,
     error: {
-      code: 'INVALID_INPUT',
+      code: "INVALID_INPUT",
       message,
     },
   };
@@ -63,7 +67,9 @@ export async function signInWithEmail(
   const parsedPayload = signInDtoSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
-    return invalidInput(parsedPayload.error.issues.map((issue) => issue.message).join('; '));
+    return invalidInput(
+      parsedPayload.error.issues.map((issue: { message: string }) => issue.message).join("; "),
+    );
   }
 
   const { data, error } = await supabase.auth.signInWithPassword(parsedPayload.data);
@@ -88,7 +94,9 @@ export async function signUp(payload: SignUpDto): Promise<ServiceResult<AuthSess
   const parsedPayload = signUpDtoSchema.safeParse(payload);
 
   if (!parsedPayload.success) {
-    return invalidInput(parsedPayload.error.issues.map((issue) => issue.message).join('; '));
+    return invalidInput(
+      parsedPayload.error.issues.map((issue: { message: string }) => issue.message).join("; "),
+    );
   }
 
   const { data, error } = await supabase.auth.signUp(parsedPayload.data);
