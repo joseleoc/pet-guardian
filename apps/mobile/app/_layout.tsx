@@ -5,6 +5,7 @@ import MaterialDesignIcons from "@react-native-vector-icons/material-design-icon
 import { type ComponentProps } from 'react';
 import { PaperProvider } from "react-native-paper";
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import 'react-native-reanimated';
 
 import { createPaperTheme } from "@/constants/paper-theme";
@@ -20,6 +21,7 @@ export const unstable_settings = {
 type MaterialDesignIconName = ComponentProps<typeof MaterialDesignIcons>['name'];
 
 export default function RootLayout() {
+  const { t } = useTranslation(["common"]);
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
 
@@ -41,7 +43,10 @@ export default function RootLayout() {
           <ThemeProvider value={navigationTheme}>
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="modal" options={{ presentation: "modal", title: "Modal" }} />
+              <Stack.Screen
+                name="modal"
+                options={{ presentation: "modal", title: t("navigation.modal.title") }}
+              />
             </Stack>
             <StatusBar style={isDark ? "light" : "dark"} />
           </ThemeProvider>

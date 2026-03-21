@@ -2,6 +2,35 @@
   "app": {
     "name": "Enterprise Dashboard"
   },
+  "navigation": {
+    "modal": {
+      "title": "Modal"
+    },
+    "tabs": {
+      "home": "Home",
+      "explore": "Explore",
+      "styleGuide": "Style Guide"
+    }
+  },
+  "screens": {
+    "home": {
+      "heading": "Enterprise Dashboard",
+      "sectionTitle": "Home",
+      "description": "Starter scaffold removed. This screen now uses reusable Paper-based atoms.",
+      "openModal": "Open modal",
+      "openStyleGuide": "Open style guide"
+    },
+    "explore": {
+      "title": "Explore",
+      "cardTitle": "Atoms in place",
+      "cardSubtitle": "Using React Native Paper",
+      "description": "This screen now uses atoms and no longer depends on Expo starter scaffold components."
+    },
+    "modal": {
+      "title": "This is a modal",
+      "goHome": "Go to home screen"
+    }
+  },
   "actions": {
     "continue": "Continue",
     "cancel": "Cancel",

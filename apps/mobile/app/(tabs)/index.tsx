@@ -1,24 +1,27 @@
 import { StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
+import { useTranslation } from "react-i18next";
 
 import { Button, SafeAreaView, Text, View } from "@/components/atoms";
 
 export default function HomeScreen() {
+  const { t } = useTranslation(["common"]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text type="title">Pet Guardian</Text>
+        <Text type="title">{t("screens.home.heading")}</Text>
       </View>
       <View style={styles.stepContainer}>
-        <Text type="subtitle">Home</Text>
-        <Text>Starter scaffold removed. This screen now uses reusable Paper-based atoms.</Text>
+        <Text type="subtitle">{t("screens.home.sectionTitle")}</Text>
+        <Text>{t("screens.home.description")}</Text>
       </View>
       <View style={styles.stepContainer}>
         <Link href="/modal">
-          <Text type="link">Open modal</Text>
+          <Text type="link">{t("screens.home.openModal")}</Text>
         </Link>
         <Link href="/style-guide" asChild>
-          <Button mode="contained-tonal">Open style guide</Button>
+          <Button mode="contained-tonal">{t("screens.home.openStyleGuide")}</Button>
         </Link>
       </View>
     </SafeAreaView>
