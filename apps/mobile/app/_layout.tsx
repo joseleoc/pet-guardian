@@ -8,6 +8,7 @@ import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-c
 import 'react-native-reanimated';
 
 import { createPaperTheme } from "@/constants/paper-theme";
+import { useAuthInit } from "@/src/hooks/use-auth-init";
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { ReactQueryProvider } from "@/lib/react-query/ReactQueryProvider";
 
@@ -20,6 +21,8 @@ type MaterialDesignIconName = ComponentProps<typeof MaterialDesignIcons>['name']
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
+
+  useAuthInit();
 
   const navigationTheme = isDark ? DarkTheme : DefaultTheme;
   const paperTheme = createPaperTheme(isDark, navigationTheme);
