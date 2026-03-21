@@ -1,14 +1,17 @@
 import { Link } from 'expo-router';
 import { StyleSheet } from 'react-native';
+import { useTranslation } from "react-i18next";
 
 import { SafeAreaView, Text } from "@/components/atoms";
 
 export default function ModalScreen() {
+  const { t } = useTranslation(["common"]);
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text type="title">This is a modal</Text>
+      <Text type="title">{t("screens.modal.title")}</Text>
       <Link href="/" dismissTo style={styles.link}>
-        <Text type="link">Go to home screen</Text>
+        <Text type="link">{t("screens.modal.goHome")}</Text>
       </Link>
     </SafeAreaView>
   );

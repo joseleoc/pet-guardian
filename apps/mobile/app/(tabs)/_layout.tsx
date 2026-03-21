@@ -1,11 +1,13 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
+import { useTranslation } from "react-i18next";
 
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
+  const { t } = useTranslation(["common"]);
   const colorScheme = useColorScheme();
 
   return (
@@ -17,7 +19,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: t("navigation.tabs.home"),
           tabBarIcon: ({ color, size }) => (
             <MaterialDesignIcons name="home" color={color} size={size} />
           ),
@@ -26,7 +28,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: "Explore",
+          title: t("navigation.tabs.explore"),
           tabBarIcon: ({ color, size }) => (
             <MaterialDesignIcons name="compass-outline" color={color} size={size} />
           ),
@@ -35,7 +37,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="style-guide"
         options={{
-          title: "Style Guide",
+          title: t("navigation.tabs.styleGuide"),
           tabBarIcon: ({ color, size }) => (
             <MaterialDesignIcons name="palette-outline" color={color} size={size} />
           ),

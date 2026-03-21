@@ -2,6 +2,35 @@
   "app": {
     "name": "Panel Empresarial"
   },
+  "navigation": {
+    "modal": {
+      "title": "Modal"
+    },
+    "tabs": {
+      "home": "Inicio",
+      "explore": "Explorar",
+      "styleGuide": "Guía de Estilo"
+    }
+  },
+  "screens": {
+    "home": {
+      "heading": "Panel Empresarial",
+      "sectionTitle": "Inicio",
+      "description": "Se eliminó el scaffold inicial. Esta pantalla ahora usa átomos reutilizables basados en Paper.",
+      "openModal": "Abrir modal",
+      "openStyleGuide": "Abrir guía de estilo"
+    },
+    "explore": {
+      "title": "Explorar",
+      "cardTitle": "Átomos implementados",
+      "cardSubtitle": "Usando React Native Paper",
+      "description": "Esta pantalla ahora usa átomos y ya no depende de los componentes de scaffold inicial de Expo."
+    },
+    "modal": {
+      "title": "Este es un modal",
+      "goHome": "Ir a la pantalla de inicio"
+    }
+  },
   "actions": {
     "continue": "Continuar",
     "cancel": "Cancelar",
