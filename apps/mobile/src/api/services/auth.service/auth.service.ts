@@ -1,65 +1,14 @@
 import { config } from '@/src/lib/config';
 import { supabase } from "@/lib/supabase";
+import { mapSupabaseError } from "./auth.service.functions";
+import { AuthServiceResult } from "./auth.service.types";
 
 export const SUPABASE_URL = config.EXPO_PUBLIC_SUPABASE_URL;
 export const SUPABASE_ANON_KEY = config.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
-export type AuthErrorCode = 'invalid_credentials' | 'network_error' | 'unknown';
 
-export interface AuthSession {
-  accessToken: string;
-  refreshToken: string;
-  userId: string;
-}
 
-export interface AuthServiceResult {
-  data: AuthSession | null;
-  error: {
-    code: AuthErrorCode;
-    message: string;
-  } | null;
-}
 
-const mapSupabaseErrorCode = (errorCode?: string): AuthErrorCode => {
-  if (errorCode === "invalid_grant" || errorCode === "invalid_credentials") {
-    return "invalid_credentials";
-  }
-
-  return 'unknown';
-};
-
-const mapSupabaseError = (error: {
-  code?: string;
-  message?: string;
-}): AuthServiceResult["error"] => {
-  const normalizedMessage = (error.message ?? "").toLowerCase();
-
-  if (
-    mapSupabaseErrorCode(error.code) === "invalid_credentials" ||
-    normalizedMessage.includes("invalid login credentials")
-  ) {
-    return {
-      code: "invalid_credentials",
-      message: error.message ?? "Invalid user credentials",
-    };
-  }
-
-  if (
-    normalizedMessage.includes("network") ||
-    normalizedMessage.includes("fetch") ||
-    normalizedMessage.includes("failed to fetch")
-  ) {
-    return {
-      code: "network_error",
-      message: error.message ?? "Unable to reach authentication service",
-    };
-  }
-
-  return {
-    code: "unknown",
-    message: error.message ?? "Authentication request failed",
-  };
-};
 
 export const signInWithPassword = async (input: {
   email: string;
