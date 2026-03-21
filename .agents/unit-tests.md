@@ -14,12 +14,53 @@
 - These tests should cover component-level unit behavior only.
 - Keep test files focused and isolated from integration/e2e concerns.
 
-## Reusable test mocks and helpers
 
-- Reusable test data, fixtures, and mocks should be centralized under a `tests/` folder.
-- Prefer package-level shared test utilities (for example `apps/mobile/tests/`) for cross-component reuse.
-- If a mock or helper is reused by multiple suites, move it from local test files into `tests/` to avoid duplication.
-- Keep shared test utilities framework-agnostic where possible and expose clear exports.
+## Mock Data Factory (Builder) Standard
+
+### Data Creation Policy
+- **Do NOT hardcode large mock objects directly in `.test.ts` files.**
+- All test data for Domain Entities (e.g., User, Transaction, Profile) **must** be created using a Builder from `src/tests/builders/`.
+
+### Mandatory Builder Usage
+- Any test requiring a Domain Entity **must** use the corresponding Builder.
+- Example: To create a `User` for a test, use `UserBuilder` from `src/tests/builders/user.builder.ts`.
+
+### Builder Structure
+- All builders must:
+	- Reside in `src/tests/builders/`.
+	- Use a fluent interface (method chaining).
+	- Initialize with "Safe Defaults" that pass standard validation.
+
+### Maintenance
+- When a shared Type or DTO is updated in `packages/types`, the corresponding Builder **must** be updated immediately to match the new schema.
+
+### Example: Correct vs Incorrect
+
+#### Incorrect (Hardcoded Object)
+
+```ts
+// ❌ Do NOT do this:
+const user: User = {
+	id: '123',
+	email: 'test@example.com',
+	role: 'admin',
+	// ...more fields
+};
+```
+
+#### Correct (Using Builder)
+
+```ts
+// ✅ Always use the builder:
+import { UserBuilder } from 'src/tests/builders/user.builder';
+
+const user = new UserBuilder()
+	.withEmail('test@example.com')
+	.withRole('admin')
+	.build();
+```
+
+---
 
 ## Backend (`apps/backend`)
 
