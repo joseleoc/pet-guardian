@@ -8,9 +8,11 @@ export default function TabTwoScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text type="title">{t("screens.explore.title")}</Text>
-      <Card title={t("screens.explore.cardTitle")} subtitle={t("screens.explore.cardSubtitle")}>
-        <Text>{t("screens.explore.description")}</Text>
+      <Text type="title">{t(($) => $.screens.explore.title)}</Text>
+      <Card
+        title={t(($) => $.screens.explore.cardTitle)}
+        subtitle={t(($) => $.screens.explore.cardSubtitle)}>
+        <Text>{t(($) => $.screens.explore.description)}</Text>
       </Card>
     </SafeAreaView>
   );
