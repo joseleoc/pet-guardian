@@ -1,10 +1,10 @@
 import type { Session, User } from '@supabase/supabase-js';
-import type { z } from 'zod';
+import type { InferType } from "yup";
 
 import { signInDtoSchema, signUpDtoSchema } from './auth.service.schemas';
 
-export type SignInWithEmailDto = z.infer<typeof signInDtoSchema>;
-export type SignUpDto = z.infer<typeof signUpDtoSchema>;
+export type SignInWithEmailDto = InferType<typeof signInDtoSchema>;
+export type SignUpDto = InferType<typeof signUpDtoSchema>;
 
 export type AuthErrorCode =
   | 'INVALID_INPUT'

@@ -1,48 +1,53 @@
-import type { AuthError } from '@supabase/supabase-js';
+import type { AuthError } from "@supabase/supabase-js";
+import { ValidationError } from "yup";
 
-import { supabase } from '@/lib/supabase';
-import { signInDtoSchema, signUpDtoSchema } from './auth.service.schemas';
+import { supabase } from "@/lib/supabase";
+import { signInDtoSchema, signUpDtoSchema } from "./auth.service.schemas";
 import type {
   AuthSessionPayload,
   ServiceError,
   ServiceResult,
   SignInWithEmailDto,
   SignUpDto,
-} from './auth.service.types';
+} from "./auth.service.types";
 
 function mapAuthError(error: AuthError): ServiceError {
   const normalizedMessage = error.message.toLowerCase();
 
-  if (error.status === 400 && normalizedMessage.includes('invalid login credentials')) {
+  if (error.status === 400 && normalizedMessage.includes("invalid login credentials")) {
     return {
-      code: 'INVALID_CREDENTIALS',
-      message: 'Enterprise credentials are invalid.',
+      code: "INVALID_CREDENTIALS",
+      message: "Enterprise credentials are invalid.",
     };
   }
 
-  if (error.status === 422 && normalizedMessage.includes('already registered')) {
+  if (error.status === 422 && normalizedMessage.includes("already registered")) {
     return {
-      code: 'EMAIL_ALREADY_REGISTERED',
-      message: 'Enterprise identity already exists.',
+      code: "EMAIL_ALREADY_REGISTERED",
+      message: "Enterprise identity already exists.",
     };
   }
 
-  if (error.status === 401 || normalizedMessage.includes('jwt') || normalizedMessage.includes('unauthorized')) {
+  if (
+    error.status === 401 ||
+    normalizedMessage.includes("jwt") ||
+    normalizedMessage.includes("unauthorized")
+  ) {
     return {
-      code: 'UNAUTHORIZED',
-      message: 'Enterprise access is not authorized.',
+      code: "UNAUTHORIZED",
+      message: "Enterprise access is not authorized.",
     };
   }
 
-  if (normalizedMessage.includes('network') || normalizedMessage.includes('fetch')) {
+  if (normalizedMessage.includes("network") || normalizedMessage.includes("fetch")) {
     return {
-      code: 'NETWORK_ERROR',
-      message: 'Network error while contacting authentication service.',
+      code: "NETWORK_ERROR",
+      message: "Network error while contacting authentication service.",
     };
   }
 
   return {
-    code: 'UNKNOWN_AUTH_ERROR',
+    code: "UNKNOWN_AUTH_ERROR",
     message: error.message,
   };
 }
@@ -51,7 +56,7 @@ function invalidInput(message: string): ServiceResult<never> {
   return {
     data: null,
     error: {
-      code: 'INVALID_INPUT',
+      code: "INVALID_INPUT",
       message,
     },
   };
@@ -60,13 +65,22 @@ function invalidInput(message: string): ServiceResult<never> {
 export async function signInWithEmail(
   payload: SignInWithEmailDto,
 ): Promise<ServiceResult<AuthSessionPayload>> {
-  const parsedPayload = signInDtoSchema.safeParse(payload);
+  let parsedPayload: SignInWithEmailDto;
 
-  if (!parsedPayload.success) {
-    return invalidInput(parsedPayload.error.issues.map((issue) => issue.message).join('; '));
+  try {
+    parsedPayload = await signInDtoSchema.validate(payload, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return invalidInput(error.errors.join("; "));
+    }
+
+    return invalidInput("Invalid request payload.");
   }
 
-  const { data, error } = await supabase.auth.signInWithPassword(parsedPayload.data);
+  const { data, error } = await supabase.auth.signInWithPassword(parsedPayload);
 
   if (error) {
     return {
@@ -85,13 +99,22 @@ export async function signInWithEmail(
 }
 
 export async function signUp(payload: SignUpDto): Promise<ServiceResult<AuthSessionPayload>> {
-  const parsedPayload = signUpDtoSchema.safeParse(payload);
+  let parsedPayload: SignUpDto;
 
-  if (!parsedPayload.success) {
-    return invalidInput(parsedPayload.error.issues.map((issue) => issue.message).join('; '));
+  try {
+    parsedPayload = await signUpDtoSchema.validate(payload, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return invalidInput(error.errors.join("; "));
+    }
+
+    return invalidInput("Invalid request payload.");
   }
 
-  const { data, error } = await supabase.auth.signUp(parsedPayload.data);
+  const { data, error } = await supabase.auth.signUp(parsedPayload);
 
   if (error) {
     return {
