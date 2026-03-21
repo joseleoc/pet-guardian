@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from "react-i18next";
 
-import { signInWithEmail, signOut } from '@/src/api/services/auth.service';
-import type { SignInWithEmailDto } from '@/src/api/services/auth.service.types';
+import { signInWithEmail, signOut } from "@/src/services/auth/auth.service";
+import type { SignInWithEmailDto } from "@/src/services/auth.service.types";
 import { translateAuthError } from "@/src/utils/translate-auth-error";
 import { authKeys } from '@/src/lib/react-query/auth-keys';
 import { useAuthStore } from '@/src/store/auth/auth.store';
