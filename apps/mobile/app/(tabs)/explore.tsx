@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { useTranslation } from "react-i18next";
 
-import { Card, SafeAreaView, Text } from "@/components/atoms";
+import { Card, SafeAreaView, Text } from "@/src/components/atoms";
 
 export default function TabTwoScreen() {
   const { t } = useTranslation(["common"]);

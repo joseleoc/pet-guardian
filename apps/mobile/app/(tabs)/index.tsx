@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
 import { useTranslation } from "react-i18next";
 
-import { Button, SafeAreaView, Text, View } from "@/components/atoms";
+import { Button, SafeAreaView, Text, View } from "@/src/components/atoms";
 
 export default function HomeScreen() {
   const { t } = useTranslation(["common"]);

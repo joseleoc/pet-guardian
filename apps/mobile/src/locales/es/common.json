@@ -26,6 +26,71 @@
       "cardSubtitle": "Usando React Native Paper",
       "description": "Esta pantalla ahora usa átomos y ya no depende de los componentes de scaffold inicial de Expo."
     },
+    "styleGuide": {
+      "title": "Guía de estilo",
+      "description": "Muestra de átomos construida con React Native Paper. Usa esta pantalla para validar el comportamiento de los temas claro y oscuro mientras evoluciona el sistema de diseño.",
+      "sections": {
+        "text": {
+          "title": "Texto",
+          "subtitle": "Variantes tipográficas",
+          "titleText": "Texto de título",
+          "subtitleText": "Texto de subtítulo",
+          "bodyText": "Texto base predeterminado para bloques de contenido más largos.",
+          "helperText": "Texto de apoyo en seminegrita",
+          "linkText": "Texto con estilo de enlace"
+        },
+        "buttons": {
+          "title": "Botones",
+          "subtitle": "Variantes de acción disponibles",
+          "contained": "Contenido",
+          "elevated": "Elevado",
+          "containedTonal": "Contenido tonal",
+          "outlined": "Con borde",
+          "text": "Texto"
+        },
+        "inputs": {
+          "title": "Campos",
+          "subtitle": "Estados de campos de una sola línea",
+          "petNameLabel": "Nombre de la mascota",
+          "flatLabel": "Campo plano",
+          "flatPlaceholder": "Variante plana",
+          "errorLabel": "Estado de error",
+          "errorValue": "Falta la fecha de vacunación",
+          "disabledLabel": "Campo deshabilitado",
+          "disabledValue": "Solo lectura"
+        },
+        "textarea": {
+          "title": "Área de texto",
+          "subtitle": "Variantes de campos multilínea",
+          "careNotesLabel": "Notas de cuidado",
+          "flatLabel": "Área de texto plana",
+          "flatPlaceholder": "Agrega observaciones adicionales",
+          "sampleValue": "Amigable con niñas y niños. Necesita recordatorios de medicación a las 8 p. m."
+        },
+        "cards": {
+          "title": "Tarjetas",
+          "subtitle": "Variantes de superficie y énfasis",
+          "containedTitle": "Tarjeta contenida",
+          "containedBody": "Sección de contenido de bajo énfasis.",
+          "outlinedTitle": "Tarjeta con borde",
+          "outlinedBody": "Límite claro para información agrupada.",
+          "elevatedTitle": "Tarjeta elevada",
+          "elevatedSubtitle": "Énfasis predeterminado",
+          "elevatedBody": "Útil para contenido destacado o resúmenes."
+        },
+        "view": {
+          "title": "View",
+          "subtitle": "Átomo base de superficie",
+          "sampleTitle": "Muestra de superficie",
+          "sampleBody": "Usa View para bloques de contenido y layouts con tema."
+        },
+        "safeAreaView": {
+          "title": "SafeAreaView",
+          "subtitle": "Contenedor de layout con reconocimiento de bordes seguros",
+          "body": "Esta pantalla está envuelta en el átomo SafeAreaView, así que los insets superiores ya se aplican mediante la API compartida del átomo."
+        }
+      }
+    },
     "modal": {
       "title": "Este es un modal",
       "goHome": "Ir a la pantalla de inicio"

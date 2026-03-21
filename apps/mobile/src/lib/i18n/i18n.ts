@@ -9,8 +9,23 @@ import esAuth from '@/src/locales/es/auth.json';
 import esCommon from '@/src/locales/es/common.json';
 import esErrors from '@/src/locales/es/errors.json';
 
-const fallbackLanguage = 'en';
+const fallbackLanguage = "en" as const;
+const defaultNamespace = "common" as const;
+const namespaces = ["auth", "common", "errors"] as const;
 const supportedLanguages = ['en', 'es'] as const;
+const resources = {
+  en: {
+    auth: enAuth,
+    common: enCommon,
+    errors: enErrors,
+  },
+  es: {
+    auth: esAuth,
+    common: esCommon,
+    errors: esErrors,
+  },
+} as const;
+
 const i18n = createInstance();
 
 type SupportedLanguage = (typeof supportedLanguages)[number];
@@ -31,24 +46,13 @@ if (!i18n.isInitialized) {
     lng: resolveLanguage(),
     fallbackLng: fallbackLanguage,
     supportedLngs: [...supportedLanguages],
-    defaultNS: 'common',
-    ns: ['auth', 'common', 'errors'],
-    resources: {
-      en: {
-        auth: enAuth,
-        common: enCommon,
-        errors: enErrors,
-      },
-      es: {
-        auth: esAuth,
-        common: esCommon,
-        errors: esErrors,
-      },
-    },
+    defaultNS: defaultNamespace,
+    ns: [...namespaces],
+    resources,
     interpolation: {
       escapeValue: false,
     },
   });
 }
 
-export { i18n };
+export { defaultNamespace, i18n, namespaces, resources, supportedLanguages };

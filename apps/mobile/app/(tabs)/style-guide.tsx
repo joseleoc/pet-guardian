@@ -1,4 +1,4 @@
-import { StyleGuideTemplate } from '@/components/templates/StyleGuideTemplate';
+import { StyleGuideTemplate } from "@/src/components/templates/StyleGuideTemplate";
 
 export default function StyleGuideScreen() {
   return <StyleGuideTemplate />;

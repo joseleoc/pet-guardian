@@ -3,8 +3,8 @@ import React from 'react';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
 import { useTranslation } from "react-i18next";
 
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from "@/src/constants/theme";
+import { useColorScheme } from "@/src/hooks/use-color-scheme/use-color-scheme";
 
 export default function TabLayout() {
   const { t } = useTranslation(["common"]);

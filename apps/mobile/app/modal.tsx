@@ -2,7 +2,7 @@ import { Link } from 'expo-router';
 import { StyleSheet } from 'react-native';
 import { useTranslation } from "react-i18next";
 
-import { SafeAreaView, Text } from "@/components/atoms";
+import { SafeAreaView, Text } from "@/src/components/atoms";
 
 export default function ModalScreen() {
   const { t } = useTranslation(["common"]);

@@ -26,6 +26,71 @@
       "cardSubtitle": "Using React Native Paper",
       "description": "This screen now uses atoms and no longer depends on Expo starter scaffold components."
     },
+    "styleGuide": {
+      "title": "Style Guide",
+      "description": "Atom showcase built with React Native Paper. Use this screen to validate light and dark theme behavior while the design system evolves.",
+      "sections": {
+        "text": {
+          "title": "Text",
+          "subtitle": "Typography variants",
+          "titleText": "Title text",
+          "subtitleText": "Subtitle text",
+          "bodyText": "Default body text for longer content blocks.",
+          "helperText": "Semi-bold helper text",
+          "linkText": "Link-styled text"
+        },
+        "buttons": {
+          "title": "Buttons",
+          "subtitle": "Available action variants",
+          "contained": "Contained",
+          "elevated": "Elevated",
+          "containedTonal": "Contained tonal",
+          "outlined": "Outlined",
+          "text": "Text"
+        },
+        "inputs": {
+          "title": "Inputs",
+          "subtitle": "Single-line field states",
+          "petNameLabel": "Pet name",
+          "flatLabel": "Flat input",
+          "flatPlaceholder": "Flat variant",
+          "errorLabel": "Error state",
+          "errorValue": "Missing vaccine date",
+          "disabledLabel": "Disabled input",
+          "disabledValue": "Read only"
+        },
+        "textarea": {
+          "title": "Textarea",
+          "subtitle": "Multi-line field variants",
+          "careNotesLabel": "Care notes",
+          "flatLabel": "Flat textarea",
+          "flatPlaceholder": "Add additional observations",
+          "sampleValue": "Friendly with kids. Needs medication reminders at 8 PM."
+        },
+        "cards": {
+          "title": "Cards",
+          "subtitle": "Surface and emphasis variants",
+          "containedTitle": "Contained card",
+          "containedBody": "Low-emphasis content section.",
+          "outlinedTitle": "Outlined card",
+          "outlinedBody": "Clear boundary for grouped information.",
+          "elevatedTitle": "Elevated card",
+          "elevatedSubtitle": "Default emphasis",
+          "elevatedBody": "Useful for featured content or summaries."
+        },
+        "view": {
+          "title": "View",
+          "subtitle": "Base surface atom",
+          "sampleTitle": "Surface sample",
+          "sampleBody": "Use View for themed content blocks and layouts."
+        },
+        "safeAreaView": {
+          "title": "SafeAreaView",
+          "subtitle": "Inset-aware layout wrapper",
+          "body": "This screen itself is wrapped in the SafeAreaView atom, so top insets are already applied through the shared atom API."
+        }
+      }
+    },
     "modal": {
       "title": "This is a modal",
       "goHome": "Go to home screen"

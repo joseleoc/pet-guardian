@@ -8,11 +8,11 @@ import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-c
 import { useTranslation } from "react-i18next";
 import 'react-native-reanimated';
 
-import { createPaperTheme } from "@/constants/paper-theme";
+import { createPaperTheme } from "@/src/constants/paper-theme";
 import { useAuthInit } from "@/src/hooks/use-auth-init";
 import "@/src/lib/i18n";
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { ReactQueryProvider } from "@/lib/react-query/ReactQueryProvider";
+import { useColorScheme } from "@/src/hooks/use-color-scheme/use-color-scheme";
+import { ReactQueryProvider } from "@/src/lib/react-query/ReactQueryProvider";
 
 export const unstable_settings = {
   anchor: '(tabs)',
