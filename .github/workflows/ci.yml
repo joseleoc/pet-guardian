@@ -58,7 +58,7 @@ jobs:
         run: pnpm typecheck
 
       - name: Build & Test (affected only)
-        run: pnpm turbo run build test --filter='...[origin/main]'
+        run: pnpm test
 
       - name: Turbo cache (save)
         uses: actions/cache@v4
