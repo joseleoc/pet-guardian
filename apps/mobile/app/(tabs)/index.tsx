@@ -10,18 +10,18 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text type="title">{t("screens.home.heading")}</Text>
+        <Text type="title">{t(($) => $.screens.home.heading)}</Text>
       </View>
       <View style={styles.stepContainer}>
-        <Text type="subtitle">{t("screens.home.sectionTitle")}</Text>
-        <Text>{t("screens.home.description")}</Text>
+        <Text type="subtitle">{t(($) => $.screens.home.sectionTitle)}</Text>
+        <Text>{t(($) => $.screens.home.description)}</Text>
       </View>
       <View style={styles.stepContainer}>
         <Link href="/modal">
-          <Text type="link">{t("screens.home.openModal")}</Text>
+          <Text type="link">{t(($) => $.screens.home.openModal)}</Text>
         </Link>
         <Link href="/style-guide" asChild>
-          <Button mode="contained-tonal">{t("screens.home.openStyleGuide")}</Button>
+          <Button mode="contained-tonal">{t(($) => $.screens.home.openStyleGuide)}</Button>
         </Link>
       </View>
     </SafeAreaView>
