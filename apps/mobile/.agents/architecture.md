@@ -92,7 +92,7 @@ Guidelines:
 ## Environment configuration
 
 - Centralize all environment variable validation in `src/lib/config.ts`.
-- Define runtime schema validation with Zod and fail fast during app startup when configuration is invalid.
+- Define runtime schema validation with Yup and fail fast during app startup when configuration is invalid.
 - Read runtime env values only via the exported `config` object; do not access `process.env` directly in services, hooks, stores, or components.
 - For SaaS Infrastructure integrations, keep public runtime keys scoped to Expo public env variables (for example `EXPO_PUBLIC_*`) and enforce schema constraints.
 - In unit tests, mock `@/src/lib/config` instead of mutating `process.env` to keep tests isolated and deterministic.
