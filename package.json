@@ -10,9 +10,9 @@
     "lint:fix": "turbo run lint:fix",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "supabase:link": "npx supabase link --project-ref \"$PROJECT_REF\"",
-    "supabase:gen": "npx supabase gen types typescript --project-id \"$PROJECT_REF\" --schema public > supabase/database.types.ts",
-    "supabase:migrate": "npx supabase db push"
+    "supabase:link": "pnpm --filter @pet-guardian/supabase run link",
+    "supabase:gen": "pnpm --filter @pet-guardian/supabase run gen",
+    "supabase:migrate": "pnpm --filter @pet-guardian/supabase run migrate"
   },
   "workspaces": [
     "apps/*",

@@ -5,6 +5,11 @@
   "types": "database.types.ts",
   "private": false,
   "description": "Shared Supabase types and config for Pet Guardian projects.",
+  "scripts": {
+    "link": "npx supabase link --project-ref \"$PROJECT_REF\"",
+    "gen": "npx supabase gen types typescript --project-id \"$PROJECT_REF\" --schema public > supabase/database.types.ts",
+    "migrate": "npx supabase db push"
+  },
   "keywords": [
     "supabase",
     "types",
