@@ -1,0 +1,11 @@
+{
+  "name": "@pet-guardian/supabase",
+  "version": "0.1.0",
+  "main": "database.types.ts",
+  "types": "database.types.ts",
+  "private": false,
+  "description": "Shared Supabase types and config for Pet Guardian projects.",
+  "keywords": ["supabase", "types", "shared"],
+  "author": "Pet Guardian Team",
+  "license": "MIT"
+}

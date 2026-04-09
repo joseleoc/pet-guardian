@@ -1,3 +1,5 @@
+# Ignore build output in packages/supabase if any
+packages/supabase/dist/
 # dependencies
 node_modules/
 .pnpm-store/
