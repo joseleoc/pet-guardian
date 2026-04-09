@@ -5,7 +5,21 @@
   "types": "database.types.ts",
   "private": false,
   "description": "Shared Supabase types and config for Pet Guardian projects.",
-  "keywords": ["supabase", "types", "shared"],
+  "keywords": [
+    "supabase",
+    "types",
+    "shared"
+  ],
   "author": "Pet Guardian Team",
-  "license": "MIT"
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./database.types.ts",
+      "default": "./database.types.ts"
+    },
+    "./database.types": {
+      "types": "./database.types.ts",
+      "default": "./database.types.ts"
+    }
+  }
 }
