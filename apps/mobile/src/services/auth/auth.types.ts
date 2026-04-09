@@ -1,7 +1,7 @@
 import type { Session, User } from '@supabase/supabase-js';
 import type { InferType } from "yup";
 
-import { signInDtoSchema, signUpDtoSchema } from './auth.service.constants';
+import { signInDtoSchema, signUpDtoSchema } from "./auth.constants";
 
 export type SignInWithEmailDto = InferType<typeof signInDtoSchema>;
 export type SignUpDto = InferType<typeof signUpDtoSchema>;

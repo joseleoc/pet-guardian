@@ -1,5 +1,5 @@
 import { AuthError } from "@supabase/supabase-js";
-import { ServiceError, ServiceResult } from "./auth.service.types";
+import { ServiceError, ServiceResult } from "./auth.types";
 
 export function mapAuthError(error: AuthError): ServiceError {
   const normalizedMessage = error.message.toLowerCase();

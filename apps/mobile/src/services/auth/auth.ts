@@ -1,14 +1,14 @@
 import { ValidationError } from "yup";
 
 import { supabase } from "@/src/lib/supabase";
-import { signInDtoSchema, signUpDtoSchema } from "./auth.service.constants";
+import { signInDtoSchema, signUpDtoSchema } from "./auth.constants";
 import type {
   AuthSessionPayload,
   ServiceResult,
   SignInWithEmailDto,
   SignUpDto,
-} from "./auth.service.types";
-import { invalidInput, mapAuthError } from "./auth.service.functions";
+} from "./auth.types";
+import { invalidInput, mapAuthError } from "./auth.functions";
 
 export async function signInWithEmail(
   payload: SignInWithEmailDto,

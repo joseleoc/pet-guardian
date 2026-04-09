@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { mapAuthError, invalidInput } from './auth.service.functions';
+import { mapAuthError, invalidInput } from './auth.functions';
 
 describe('mapAuthError', () => {
   it('returns INVALID_CREDENTIALS for 400 invalid login', () => {

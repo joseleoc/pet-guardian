@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { getSession } from "@/src/services/auth/auth.service";
+import { getSession } from "@/src/services/auth/auth";
 import { useAuthStore } from '@/src/store/auth/auth.store';
 import { supabase } from "@/src/lib/supabase";
 
