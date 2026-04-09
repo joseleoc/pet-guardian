@@ -12,17 +12,48 @@ export const envSchema = yup.object({
     .string()
     .required("EXPO_PUBLIC_SUPABASE_URL is required")
     .min(1, "EXPO_PUBLIC_SUPABASE_URL cannot be empty")
-    .url("EXPO_PUBLIC_SUPABASE_URL must be a valid URL"),
+    .test(
+      "valid-url-or-localhost",
+      "EXPO_PUBLIC_SUPABASE_URL must be a valid URL or localhost",
+      function (value) {
+        if (!value) return false;
+        const { EXPO_PUBLIC_ENVIRONMENT } = this.parent;
+        try {
+          new URL(value);
+          return true;
+        } catch {
+          return (
+            EXPO_PUBLIC_ENVIRONMENT === "development" &&
+            value.includes("localhost")
+          );
+        }
+      },
+    ),
   EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY: yup
     .string()
     .required("EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY is required")
     .min(1, "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY cannot be empty"),
   EXPO_PUBLIC_API_URL: yup
     .string()
-    .required("EXPO_PUBLIC_API_URL is required")
     .min(1, "EXPO_PUBLIC_API_URL cannot be empty")
-    .url("EXPO_PUBLIC_API_URL must be a valid URL")
-    .required("EXPO_PUBLIC_API_URL is required"),
+    .required("EXPO_PUBLIC_API_URL is required")
+    .test(
+      "valid-url-or-localhost",
+      "EXPO_PUBLIC_API_URL must be a valid URL or localhost",
+      function (value) {
+        if (!value) return false;
+        const { EXPO_PUBLIC_ENVIRONMENT } = this.parent;
+        try {
+          new URL(value);
+          return true;
+        } catch {
+          return (
+            EXPO_PUBLIC_ENVIRONMENT === "development" &&
+            value.includes("localhost")
+          );
+        }
+      },
+    ),
 });
 
 let parsedEnv: yup.InferType<typeof envSchema>;
