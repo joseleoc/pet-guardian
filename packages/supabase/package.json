@@ -26,5 +26,8 @@
       "types": "./database.types.ts",
       "default": "./database.types.ts"
     }
+  },
+  "dependencies": {
+    "supabase": "^2.83.0"
   }
 }
