@@ -32,6 +32,6 @@
   },
   "homepage": "https://github.com/lagoonStudios/pet-guardian-mvp#readme",
   "devDependencies": {
-    "turbo": "^2.8.17"
+    "turbo": "^2.9.5"
   }
 }
