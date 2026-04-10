@@ -7,11 +7,13 @@ import { supabase } from "@/src/lib/supabase";
 export function useAuthInit() {
   const setSession = useAuthStore((state) => state.setSession);
   const clearSession = useAuthStore((state) => state.clearSession);
+  const setLoading = useAuthStore((state) => state.setLoading);
 
   useEffect(() => {
     let isMounted = true;
 
     async function syncInitialSession() {
+      setLoading(true);
       const result = await getSession();
 
       if (!isMounted) {
@@ -20,6 +22,7 @@ export function useAuthInit() {
 
       if (result.error || !result.data.session) {
         clearSession();
+        setLoading(false);
         return;
       }
 
@@ -27,6 +30,7 @@ export function useAuthInit() {
         user: result.data.user,
         session: result.data.session,
       });
+      setLoading(false);
     }
 
     void syncInitialSession();
@@ -47,5 +51,5 @@ export function useAuthInit() {
       isMounted = false;
       authSubscription.data.subscription.unsubscribe();
     };
-  }, [clearSession, setSession]);
+  }, [clearSession, setSession, setLoading]);
 }

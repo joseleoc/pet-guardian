@@ -10,6 +10,7 @@ export interface AuthState {
 export interface AuthActions {
   setSession: (payload: { user: User | null; session: Session | null }) => void;
   clearSession: () => void;
+  setLoading: (isLoading: boolean) => void;
 }
 
 export type AuthStore = AuthState & AuthActions;
